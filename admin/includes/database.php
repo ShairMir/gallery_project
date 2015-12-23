@@ -6,7 +6,11 @@ class Database {
 
 	public $connection;
 
-	public function open_db_connection() {
+	function __construct(){
+		$this->open_db_connection();
+	}
+
+	public function open_db_connection(){
 
 		$this->connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -16,11 +20,22 @@ class Database {
 
 	}
 
+	public function query($sql) {
+
+		$result = mysqli_query($connection, $sql);
+
+		if (!$result) {
+			die("Query Failed");
+		}
+
+		return $result;
+
+	}
+
+
 }
 
 $database = new Database();
-
-$database->open_db_connection();
 
 
 ?>
