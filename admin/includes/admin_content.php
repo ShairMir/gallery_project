@@ -10,9 +10,12 @@
 
                         <?php 
 
-                        if(!$database->connection){
-                            echo "no connection to db";
-                        } 
+                        $sql = "SELECT * FROM users WHERE id=2";
+                        $result = $database->query($sql);
+                        $user_found = mysqli_fetch_array($result);
+                        echo $user_found['username'];
+
+
 
                         ?>
 
