@@ -24,6 +24,8 @@ class Database {
 
 		$result = $this->connection->query($sql);
 
+		$this->confirm_query($result);
+
 		return $result;
 
 	}
