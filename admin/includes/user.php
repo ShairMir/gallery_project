@@ -19,8 +19,11 @@ class User {
 
 		global $database;
 
-		$result_set = self::find_this_query("SELECT * FROM users WHERE id=$user_id LIMIT 1");
-		$found_user = mysqli_fetch_array($result_set);
+		$the_result_array = self::find_this_query("SELECT * FROM users WHERE id=$user_id LIMIT 1");
+
+
+		return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
 		return $found_user;
 
 	}
@@ -69,8 +72,10 @@ class User {
 
 	private function has_the_attribute($the_attribute){
 
+		// Returns an associative array of defined object accessible non-static properties in Users
 		$object_properties = get_object_vars($this);
 
+		// Checks if the given key or index exists in the array
 		return array_key_exists($the_attribute, $object_properties);
 
 	}
